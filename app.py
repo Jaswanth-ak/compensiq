@@ -35,6 +35,23 @@ COUNTRY_NAMES = {
 }
 
 # ──────────────────────────────────────────────
+# CODES TO FULL NAMES MAPPING
+# ──────────────────────────────────────────────
+EXP_MAP = {
+    "EN": "Entry-Level / Junior",
+    "MI": "Mid-Level / Intermediate",
+    "SE": "Senior-Level / Expert",
+    "EX": "Executive-Level / Director"
+}
+
+EMP_MAP = {
+    "FT": "Full-Time",
+    "PT": "Part-Time",
+    "CT": "Contract",
+    "FL": "Freelance"
+}
+
+# ──────────────────────────────────────────────
 # LOAD MODEL PACKAGE
 # ──────────────────────────────────────────────
 @st.cache_resource
@@ -92,15 +109,20 @@ with st.sidebar:
 
     work_year = st.slider("Work Year", 2020, 2026, 2024)
 
+
+    
     experience_level = st.selectbox(
         "Experience Level",
-        ["EN", "MI", "SE", "EX"]
+        ["EN", "MI", "SE", "EX"],
+        format_func=lambda x: EXP_MAP.get(x, x) # Shows full name in UI, returns Code to logic
     )
 
     employment_type = st.selectbox(
         "Employment Type",
-        sorted(df["employment_type"].unique())
+        sorted(df["employment_type"].unique()),
+        format_func=lambda x: EMP_MAP.get(x, x) # Shows full name in UI, returns Code to logic
     )
+
 
     job_title = st.selectbox(
         "Job Title",
