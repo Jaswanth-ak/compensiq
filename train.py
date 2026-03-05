@@ -10,7 +10,7 @@ import plotly.express as px
 # PAGE CONFIG
 # ──────────────────────────────────────────────
 st.set_page_config(
-    page_title="AI Salary Intelligence System",
+    page_title="AI Salary Prediction & Analytics System",
     page_icon="💼",
     layout="wide"
 )
