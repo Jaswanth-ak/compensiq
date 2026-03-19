@@ -420,17 +420,15 @@ with tab3:
             })
         st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
-    st.markdown("---")
-    st.subheader("Charts")
     for img,title in [
-        ("03_diagnostics.png",         "Actual vs Predicted"),
-        ("04_band_performance.png",    "Performance by Salary Band"),
-        ("05_feature_importance.png",  "Feature Importance"),
-        ("06_model_comparison.png",    "Model Comparison"),
-        ("07_salary_distributions.png","Salary Distributions"),
-    ]:
-        if os.path.exists(img):
-            st.image(img, caption=title, use_container_width=True)
+    ("charts/03_diagnostics.png",         "Actual vs Predicted"),
+    ("charts/04_band_performance.png",    "Performance by Salary Band"),
+    ("charts/05_feature_importance.png",  "Feature Importance"),
+    ("charts/06_model_comparison.png",    "Model Comparison"),
+    ("charts/07_salary_distributions.png","Salary Distributions"),
+]:
+    if os.path.exists(img):
+        st.image(img, caption=title, use_container_width=True)
 
 with tab4:
     st.subheader("Download Candidate Eligibility Report")
