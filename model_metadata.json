@@ -1,0 +1,126 @@
+{
+  "best_model": "HistGradientBoosting",
+  "use_scaled": false,
+  "use_log_target": true,
+  "r2": 0.8948,
+  "cv_r2": 0.9322,
+  "cv_std": 0.0028,
+  "mae": 15060.56,
+  "rmse": 22475.46,
+  "mape": 12.16,
+  "n_features": 64,
+  "n_train": 31538,
+  "n_test": 7885,
+  "cat_cols": [
+    "experience_level",
+    "job_family",
+    "company_size",
+    "company_tier",
+    "education_level",
+    "industry",
+    "city_tier",
+    "company_region",
+    "employee_region",
+    "remote_type"
+  ],
+  "num_cols": [
+    "years_of_experience",
+    "seniority_flag",
+    "is_us",
+    "geo_multiplier",
+    "remote_fraction",
+    "years_since_2020",
+    "market_cycle",
+    "is_2026",
+    "base_salary_index",
+    "company_multiplier",
+    "edu_multiplier",
+    "industry_multiplier",
+    "remote_multiplier",
+    "experience_multiplier",
+    "skills_multiplier",
+    "expected_salary_signal",
+    "log_expected_signal",
+    "exp_x_geo",
+    "exp_x_company",
+    "exp_x_edu",
+    "seniority_x_exp",
+    "geo_x_tier",
+    "signal_x_market"
+  ],
+  "target": "salary_in_usd",
+  "all_models": {
+    "Random Forest": {
+      "r2": 0.8909,
+      "mae": 15343.91,
+      "mape": 12.34
+    },
+    "Gradient Boosting": {
+      "r2": 0.8932,
+      "mae": 15185.81,
+      "mape": 12.24
+    },
+    "HistGradientBoosting": {
+      "r2": 0.8948,
+      "mae": 15060.56,
+      "mape": 12.16
+    },
+    "XGBoost": {
+      "r2": 0.8895,
+      "mae": 15524.44,
+      "mape": 12.5
+    }
+  },
+  "base_salary_index": {
+    "ML Engineer": 128000,
+    "Data Scientist": 118000,
+    "Manager": 140000,
+    "Architect": 135000,
+    "Data Engineer": 115000,
+    "Analyst": 88000,
+    "Other": 100000
+  },
+  "tier_multiplier": {
+    "Startup": 0.82,
+    "Mid-tier": 1.0,
+    "Enterprise": 1.12,
+    "Big Tech": 1.45
+  },
+  "edu_multiplier": {
+    "Bachelor": 1.0,
+    "Master": 1.08,
+    "PhD": 1.18,
+    "MBA": 1.1
+  },
+  "industry_multiplier": {
+    "Tech": 1.0,
+    "Finance": 1.22,
+    "Research": 1.05,
+    "Consulting": 1.08,
+    "Other_Industry": 0.9
+  },
+  "country_geo": {
+    "US": 1.0,
+    "CA": 0.78,
+    "GB": 0.7,
+    "DE": 0.68,
+    "FR": 0.6,
+    "NL": 0.73,
+    "IE": 0.75,
+    "AT": 0.64,
+    "BE": 0.62,
+    "MX": 0.29,
+    "PL": 0.32,
+    "LT": 0.24,
+    "LV": 0.24,
+    "SK": 0.28,
+    "ES": 0.46,
+    "PT": 0.38,
+    "IN": 0.18,
+    "AU": 0.74,
+    "BR": 0.25,
+    "ZA": 0.25,
+    "AR": 0.18,
+    "SG": 0.68
+  }
+}

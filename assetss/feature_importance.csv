@@ -1,9 +1,0 @@
-Feature,Importance
-employee_residence_enc,0.5714505070593265
-job_title_enc,0.19155013484924102
-experience_level_enc,0.14660321227840487
-company_location_enc,0.06066829141641832
-remote_ratio,0.02023081908067096
-company_size_enc,0.008525882033821213
-employment_type_enc,0.0009694553447875073
-work_year,1.697937329469905e-06
