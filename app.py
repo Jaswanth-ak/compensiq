@@ -318,7 +318,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
  
 col_m1, col_m2, col_m3, col_m4, col_m5 = st.columns(5)
-col_m1.metric("Model",    meta["best_model"].replace("Hist","Hist\n"))
+col_m1.metric("Model", "HistGradBoost")
 col_m2.metric("R² Score", f"{meta['r2']:.4f}")
 col_m3.metric("CV R²",    f"{meta['cv_r2']:.4f}")
 col_m4.metric("MAE",      f"${meta['mae']:,.0f}")
