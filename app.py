@@ -166,8 +166,8 @@ html, body, [class*="css"] {
 .badge-orange { background: #FFF3E0; color: #E65100; }
  
 .stTabs [data-baseweb="tab-list"] {
-    gap: 8px;
-    background: #F0F4FF;
+    gap: 6px;
+    background: #1565C0;
     padding: 6px;
     border-radius: 12px;
 }
@@ -175,10 +175,12 @@ html, body, [class*="css"] {
     border-radius: 8px;
     padding: 0.5rem 1.2rem;
     font-weight: 600;
+    color: white !important;
 }
 .stTabs [aria-selected="true"] {
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white !important;
+    color: #1565C0!important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
  
 .sidebar-section {
@@ -386,16 +388,20 @@ with st.sidebar:
         list(COUNTRY_NAMES.keys()),
         format_func=lambda x: COUNTRY_NAMES[x]
     )
+if country != "US":
+    city_tier = "International"
+    st.info("City Tier: International (auto-set for non-US)")
+else:
     city_tier = st.selectbox(
-        "City Tier",
-        ["Tier1_Metro","Tier2_City","Tier3_Other","International"],
+        "City Tier (US only)",
+        ["Tier1_Metro","Tier2_City","Tier3_Other"],
         format_func=lambda x: {
-            "Tier1_Metro":"Tier 1 — SF / NYC / Seattle",
-            "Tier2_City":"Tier 2 — Austin / Boston / Chicago",
-            "Tier3_Other":"Tier 3 — Rest of country",
-            "International":"International"
+            "Tier1_Metro":"Tier 1 — SF / NYC / Seattle (+18%)",
+            "Tier2_City":"Tier 2 — Austin / Boston / Chicago (+5%)",
+            "Tier3_Other":"Tier 3 — Rest of US (-5%)",
         }[x]
     )
+    st.caption("Only shown for US — other countries use geo multiplier")
  
     st.markdown("---")
     st.markdown("### Work Setup")
