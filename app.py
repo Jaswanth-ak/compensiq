@@ -25,10 +25,10 @@ st.set_page_config(
 
 @st.cache_resource
 def load_artifacts():
-    model    = joblib.load("model.pkl")
-    scaler   = joblib.load("scaler.pkl")
-    fcols    = joblib.load("feature_columns.pkl")
-    cat_cols = joblib.load("cat_cols.pkl")
+model    = joblib.load("artifacts/model.pkl")
+scaler   = joblib.load("artifacts/scaler.pkl")
+fcols    = joblib.load("artifacts/feature_columns.pkl")
+cat_cols = joblib.load("artifacts/cat_cols.pkl")
     with open("model_metadata.json", encoding="utf-8") as f:
         meta = json.load(f)
     return model, scaler, fcols, cat_cols, meta
