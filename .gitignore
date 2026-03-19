@@ -1,11 +1,6 @@
 # Large files
 employees_enhanced.csv
 
-# Model artifacts
-model.pkl
-scaler.pkl
-feature_columns.pkl
-cat_cols.pkl
 
 # Python
 __pycache__/
