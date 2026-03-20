@@ -232,20 +232,10 @@ country = st.sidebar.selectbox(
     format_func=lambda x: f"{COUNTRY_NAMES[x]} ({x})"
 )
 
-if country != "US":
-    city_tier = "International"
-    st.sidebar.info("City Tier: International (auto-set for non-US)")
+if country == "US":
+    city_tier = "Tier2_City"
 else:
-    city_tier = st.sidebar.selectbox(
-        "City Tier (US only)",
-        ["Tier1_Metro","Tier2_City","Tier3_Other"],
-        format_func=lambda x: {
-            "Tier1_Metro":"Tier 1 - SF / NYC / Seattle  (+18%)",
-            "Tier2_City":"Tier 2 - Austin / Boston / Chicago  (+5%)",
-            "Tier3_Other":"Tier 3 - Rest of US  (-5%)",
-        }[x]
-    )
-    st.sidebar.caption("Tier 1 cities pay 18% above US national average")
+    city_tier = "International"
 
 st.sidebar.subheader("Work Setup")
 industry = st.sidebar.selectbox(
