@@ -17,7 +17,7 @@ from reportlab.platypus import (
 from reportlab.lib.enums import TA_CENTER
 
 st.set_page_config(
-    page_title="CompensIQ",
+    page_title="compensiq",
     page_icon="$",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -25,10 +25,10 @@ st.set_page_config(
 
 @st.cache_resource
 def load_artifacts():
-    model    = joblib.load("artifacts/model.pkl")
-    scaler   = joblib.load("artifacts/scaler.pkl")
-    fcols    = joblib.load("artifacts/feature_columns.pkl")
-    cat_cols = joblib.load("artifacts/cat_cols.pkl")
+    model    = joblib.load("model.pkl")
+    scaler   = joblib.load("scaler.pkl")
+    fcols    = joblib.load("feature_columns.pkl")
+    cat_cols = joblib.load("cat_cols.pkl")
     with open("model_metadata.json", encoding="utf-8") as f:
         meta = json.load(f)
     return model, scaler, fcols, cat_cols, meta
@@ -48,23 +48,10 @@ st.markdown("""
 }
 .salary-box h1 { font-size: 3.5rem; margin: 0; font-weight: 800; }
 .salary-box p  { font-size: 1.1rem; opacity: 0.9; margin: 0.3rem 0; }
-.stTabs [data-baseweb="tab-list"] {
-    gap: 6px; background: #1565C0;
-    padding: 6px; border-radius: 12px;
-}
-.stTabs [data-baseweb="tab"] {
-    border-radius: 8px; padding: 0.5rem 1.2rem;
-    font-weight: 600; color: white !important;
-}
-.stTabs [aria-selected="true"] {
-    background: white !important;
-    color: #1565C0 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
 </style>
 """, unsafe_allow_html=True)
 
-st.title("CompensIQ - Data Science Salary Intelligence System")
+st.title("CompensIQ — Data Science Salary Intelligence System")
 st.markdown(
     f"**{meta['best_model']}** - "
     f"R2 = **{meta['r2']:.3f}** - "
@@ -73,102 +60,61 @@ st.markdown(
     f"Trained on **{meta['n_train']:,}** samples"
 )
 st.markdown(
-    "[![GitHub](https://img.shields.io/badge/GitHub-Jaswanth--ak%2Fcompensiq-black?logo=github)]"
-    "(https://github.com/Jaswanth-ak/compensiq)",
+    "[![GitHub](https://img.shields.io/badge/GitHub-View_Repository-black?logo=github)]"
+    "(https://github.com/Jaswanth-ak)",
     unsafe_allow_html=True
 )
 st.divider()
-
+or
 REGION_MAP = {
-    "US":"North America","CA":"North America","MX":"North America",
-    "GB":"Europe_West","DE":"Europe_West","FR":"Europe_West",
-    "NL":"Europe_West","IE":"Europe_West","AT":"Europe_West",
-    "BE":"Europe_West","SE":"Europe_West","NO":"Europe_West",
-    "DK":"Europe_West","FI":"Europe_West","CH":"Europe_West",
-    "ES":"Europe_South","IT":"Europe_South","PT":"Europe_South",
-    "GR":"Europe_South",
-    "PL":"Europe_East","CZ":"Europe_East","RO":"Europe_East",
-    "HU":"Europe_East","SK":"Europe_East","LT":"Europe_East",
-    "LV":"Europe_East","EE":"Europe_East","HR":"Europe_East",
-    "BG":"Europe_East","RS":"Europe_East","UA":"Europe_East",
-    "IN":"Asia_Em","CN":"Asia_Em","PK":"Asia_Em","BD":"Asia_Em",
-    "PH":"Asia_Em","VN":"Asia_Em","MY":"Asia_Em",
-    "ID":"Asia_Em","TH":"Asia_Em",
-    "JP":"Asia_Dev","KR":"Asia_Dev","SG":"Asia_Dev",
-    "AU":"Asia_Dev","NZ":"Asia_Dev","HK":"Asia_Dev","TW":"Asia_Dev",
-    "IL":"Middle_East","AE":"Middle_East","SA":"Middle_East",
-    "TR":"Middle_East","QA":"Middle_East",
-    "BR":"LatAm","AR":"LatAm","CO":"LatAm","CL":"LatAm","PE":"LatAm",
-    "NG":"Africa","KE":"Africa","ZA":"Africa","GH":"Africa","EG":"Africa",
+    "US":"North America","CA":"North America","GB":"Europe_West",
+    "DE":"Europe_West","FR":"Europe_West","NL":"Europe_West",
+    "IN":"Asia_Em","AU":"Asia_Dev","SG":"Asia_Dev",
+    "BR":"LatAm","ZA":"Africa","AR":"LatAm",
+    "ES":"Europe_South","PL":"Europe_East","LT":"Europe_East",
 }
-
 COUNTRY_GEO = {
-    "US":1.000,"CA":0.780,"MX":0.290,
-    "GB":0.700,"DE":0.680,"FR":0.600,"NL":0.730,
-    "IE":0.750,"AT":0.640,"BE":0.620,"SE":0.650,
-    "NO":0.700,"DK":0.680,"FI":0.610,"CH":0.920,
-    "ES":0.460,"IT":0.450,"PT":0.380,"GR":0.340,
-    "PL":0.320,"CZ":0.340,"RO":0.250,"HU":0.280,
-    "SK":0.280,"LT":0.240,"LV":0.240,"EE":0.290,
-    "HR":0.260,"BG":0.210,"RS":0.220,"UA":0.160,
-    "IN":0.180,"CN":0.360,"PK":0.140,"BD":0.120,
-    "PH":0.200,"VN":0.150,"MY":0.260,"ID":0.180,"TH":0.230,
-    "JP":0.520,"KR":0.480,"SG":0.680,"AU":0.740,
-    "NZ":0.610,"HK":0.620,"TW":0.420,
-    "IL":0.620,"AE":0.580,"SA":0.490,"TR":0.220,"QA":0.510,
-    "BR":0.250,"AR":0.180,"CO":0.210,"CL":0.290,"PE":0.200,
-    "NG":0.140,"KE":0.150,"ZA":0.250,"GH":0.130,"EG":0.160,
+    "US":1.000,"CA":0.780,"GB":0.700,"DE":0.680,"FR":0.600,
+    "NL":0.730,"IN":0.180,"AU":0.740,"SG":0.680,"BR":0.250,
+    "ZA":0.250,"AR":0.180,"ES":0.460,"PL":0.320,"LT":0.240,
 }
-
 COUNTRY_NAMES = {
-    "US":"United States","CA":"Canada","MX":"Mexico",
-    "GB":"United Kingdom","DE":"Germany","FR":"France",
-    "NL":"Netherlands","IE":"Ireland","AT":"Austria",
-    "BE":"Belgium","SE":"Sweden","NO":"Norway",
-    "DK":"Denmark","FI":"Finland","CH":"Switzerland",
-    "ES":"Spain","IT":"Italy","PT":"Portugal","GR":"Greece",
-    "PL":"Poland","CZ":"Czech Republic","RO":"Romania",
-    "HU":"Hungary","SK":"Slovakia","LT":"Lithuania",
-    "LV":"Latvia","EE":"Estonia","HR":"Croatia",
-    "BG":"Bulgaria","RS":"Serbia","UA":"Ukraine",
-    "IN":"India","CN":"China","PK":"Pakistan",
-    "BD":"Bangladesh","PH":"Philippines","VN":"Vietnam",
-    "MY":"Malaysia","ID":"Indonesia","TH":"Thailand",
-    "JP":"Japan","KR":"South Korea","SG":"Singapore",
-    "AU":"Australia","NZ":"New Zealand","HK":"Hong Kong","TW":"Taiwan",
-    "IL":"Israel","AE":"UAE","SA":"Saudi Arabia",
-    "TR":"Turkey","QA":"Qatar",
-    "BR":"Brazil","AR":"Argentina","CO":"Colombia",
-    "CL":"Chile","PE":"Peru",
-    "NG":"Nigeria","KE":"Kenya","ZA":"South Africa",
-    "GH":"Ghana","EG":"Egypt",
+    "US":"United States","CA":"Canada","GB":"United Kingdom",
+    "DE":"Germany","FR":"France","NL":"Netherlands",
+    "IN":"India","AU":"Australia","SG":"Singapore",
+    "BR":"Brazil","ZA":"South Africa","AR":"Argentina",
+    "ES":"Spain","PL":"Poland","LT":"Lithuania",
 }
-
-REGION_FALLBACK = {
-    "North America":0.820,"Europe_West":0.660,"Europe_South":0.420,
-    "Europe_East":0.270,"Asia_Dev":0.570,"Asia_Em":0.220,
-    "Middle_East":0.490,"LatAm":0.230,"Africa":0.170,"Other":0.300,
-}
-
 BASE_SAL = {
     "ML Engineer":128000,"Data Scientist":118000,
     "Manager":140000,"Architect":135000,
     "Data Engineer":115000,"Analyst":88000,"Other":100000,
 }
 
-def get_tier(size, job_family):
+# Company size directly maps to tier
+# S = Startup, M = Mid-tier, L = Enterprise or Big Tech (role-informed)
+def get_tier_from_size_role(size, job_family):
     if size == "S": return "Startup"
     if size == "M": return "Mid-tier"
-    if job_family in ["ML Engineer","Data Scientist"]: return "Big Tech"
+    # Large company — Big Tech probability depends on role
+    big_tech_roles = ["ML Engineer","Data Scientist"]
+    if job_family in big_tech_roles:
+        return "Big Tech"
     return "Enterprise"
 
 TIER_MULT = {"Startup":0.82,"Mid-tier":1.00,"Enterprise":1.12,"Big Tech":1.45}
 EDU_M     = {"Bachelor":1.00,"Master":1.08,"PhD":1.18,"MBA":1.10}
 IND_M     = {"Tech":1.00,"Finance":1.22,"Research":1.05,
               "Consulting":1.08,"Other_Industry":0.90}
+REMOTE_M  = {
+    0:1.02,10:1.01,20:1.01,25:1.00,30:1.00,
+    40:0.99,50:0.99,60:0.98,70:0.97,
+    75:0.97,80:0.96,90:0.96,100:0.95,
+}
 MARKET    = {2020:0.91,2021:0.94,2022:1.06,
               2023:1.09,2024:1.00,2025:0.98,2026:1.01}
 EXP_BOUNDS = {"EN":(0,2,1),"MI":(3,6,4),"SE":(7,12,9),"EX":(13,22,16)}
+
 SIZE_LABELS = {
     "S":"Small  (Startup, <50 employees)",
     "M":"Medium (Mid-tier, 50-999 employees)",
@@ -185,6 +131,7 @@ def exp_multiplier(years):
         else: m*=1.010
     return m
 
+# SIDEBAR
 st.sidebar.header("Candidate Profile")
 candidate_name = st.sidebar.text_input("Candidate Name", "Your Name")
 
@@ -222,43 +169,51 @@ company_size = st.sidebar.selectbox(
     format_func=lambda x: SIZE_LABELS[x],
     index=1
 )
-company_tier = get_tier(company_size, job_family)
-st.sidebar.caption(f"Tier: {company_tier}  |  Multiplier: x{TIER_MULT[company_tier]:.2f}")
+company_tier = get_tier_from_size_role(company_size, job_family)
+st.sidebar.caption(f"Tier: {company_tier}")
 
 st.sidebar.subheader("Location")
 country = st.sidebar.selectbox(
-    "Country",
-    list(COUNTRY_NAMES.keys()),
-    format_func=lambda x: f"{COUNTRY_NAMES[x]} ({x})"
+    "Country", list(COUNTRY_NAMES.keys()),
+    format_func=lambda x: COUNTRY_NAMES[x]
 )
-
-if country == "US":
-    city_tier = "Tier2_City"
-else:
-    city_tier = "International"
+city_tier = st.sidebar.selectbox(
+    "City Tier",
+    ["Tier1_Metro","Tier2_City","Tier3_Other","International"],
+    format_func=lambda x: {
+        "Tier1_Metro":"Tier 1 (SF/NYC/Seattle)",
+        "Tier2_City":"Tier 2 (Austin/Boston/Chicago)",
+        "Tier3_Other":"Tier 3 (Rest of country)",
+        "International":"International"
+    }[x]
+)
 
 st.sidebar.subheader("Work Setup")
 industry = st.sidebar.selectbox(
     "Industry",
     ["Tech","Finance","Research","Consulting","Other_Industry"],
     format_func=lambda x: {
-        "Tech":"Tech",
-        "Finance":"Finance  (+22% premium)",
-        "Research":"Research  (+5% premium)",
-        "Consulting":"Consulting  (+8% premium)",
-        "Other_Industry":"Other Industry  (-10%)"
+        "Tech":"Tech","Finance":"Finance (+22%)",
+        "Research":"Research (+5%)","Consulting":"Consulting (+8%)",
+        "Other_Industry":"Other Industry (-10%)"
     }[x]
+)
+remote_pct = st.sidebar.select_slider(
+    "Remote Work %",
+    options=[0,10,20,25,30,40,50,60,70,75,80,90,100],
+    value=0
 )
 work_year = st.sidebar.selectbox("Year", [2023,2024,2025,2026], index=2)
 
+# COMPUTE
 region   = REGION_MAP.get(country, "Other")
-geo_m    = COUNTRY_GEO.get(country, REGION_FALLBACK.get(region, 0.300))
+geo_m    = COUNTRY_GEO.get(country, 0.300)
 is_us    = 1 if country == "US" else 0
 base     = BASE_SAL.get(job_family, 100000)
 comp_m   = TIER_MULT.get(company_tier, 1.0)
 edu_m    = EDU_M.get(education, 1.0)
 ind_m    = IND_M.get(industry, 1.0)
-rem_m    = 1.00
+rem_m    = REMOTE_M.get(remote_pct, 0.97)
 yr_m     = MARKET.get(work_year, 1.0)
 exp_mult = exp_multiplier(years_exp)
 skill_m  = 1.0 + (years_exp * 0.006)
@@ -274,10 +229,11 @@ row = {
     "company_size":company_size,"company_tier":company_tier,
     "education_level":education,"industry":industry,
     "city_tier":city_tier,"company_region":region,
-    "employee_region":region,"remote_type":"onsite",
+    "employee_region":region,
+    "remote_type":("onsite" if remote_pct<30 else "hybrid" if remote_pct<80 else "remote"),
     "years_of_experience":years_exp,"seniority_flag":snr,
     "is_us":is_us,"geo_multiplier":geo_m,
-    "remote_fraction":0.0,"years_since_2020":yrs_2020,
+    "remote_fraction":remote_pct/100.0,"years_since_2020":yrs_2020,
     "market_cycle":mkt_cyc,"is_2026":is_2026f,
     "base_salary_index":base,"company_multiplier":comp_m,
     "edu_multiplier":edu_m,"industry_multiplier":ind_m,
@@ -309,6 +265,7 @@ elif prediction < 200000: band = "Above Midpoint"
 elif prediction < 280000: band = "Top Quartile"
 else:                     band = "Top Percentile"
 
+# TABS
 tab1, tab2, tab3, tab4 = st.tabs([
     "Prediction", "Breakdown", "Model Info", "Download Report"
 ])
@@ -333,7 +290,7 @@ with tab1:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("**By Experience Level (same company and role)**")
+        st.markdown("**By Experience Level (same company & role)**")
         for lvl, yrs, label in [
             ("EN",1,"Entry"),("MI",4,"Mid"),
             ("SE",9,"Senior"),("EX",16,"Exec")
@@ -347,10 +304,11 @@ with tab1:
                 "company_size":company_size,"company_tier":company_tier,
                 "education_level":education,"industry":industry,
                 "city_tier":city_tier,"company_region":region,
-                "employee_region":region,"remote_type":"onsite",
+                "employee_region":region,
+                "remote_type":("onsite" if remote_pct<30 else "hybrid" if remote_pct<80 else "remote"),
                 "years_of_experience":yrs,"seniority_flag":snr_,
                 "is_us":is_us,"geo_multiplier":geo_m,
-                "remote_fraction":0.0,
+                "remote_fraction":remote_pct/100.0,
                 "years_since_2020":yrs_2020,"market_cycle":mkt_cyc,
                 "is_2026":is_2026f,"base_salary_index":base,
                 "company_multiplier":comp_m,"edu_multiplier":edu_m,
@@ -366,17 +324,17 @@ with tab1:
             e_  = pd.get_dummies(df_, columns=cat_cols, drop_first=True)
             e_  = e_.reindex(columns=feature_cols, fill_value=0)
             p_  = max(float(np.expm1(model.predict(e_)[0])),15000)
-            marker = "  << YOU" if lvl==exp_level else ""
+            marker = " << YOU" if lvl==exp_level else ""
             st.markdown(f"`{label:<8}` ${p_:>9,.0f}{marker}")
 
     with col2:
-        st.markdown("**By Company Size (same role and experience)**")
+        st.markdown("**By Company Size (same role & experience)**")
         for sz_,label_ in [
             ("S","Small  (Startup)"),
             ("M","Medium (Mid-tier)"),
             ("L","Large  (Enterprise/BigTech)"),
         ]:
-            tr_  = get_tier(sz_, job_family)
+            tr_  = get_tier_from_size_role(sz_, job_family)
             cm_  = TIER_MULT[tr_]
             sig_ = base*exp_mult*cm_*geo_m*edu_m*ind_m*rem_m*yr_m
             r_ = {
@@ -384,10 +342,11 @@ with tab1:
                 "company_size":sz_,"company_tier":tr_,
                 "education_level":education,"industry":industry,
                 "city_tier":city_tier,"company_region":region,
-                "employee_region":region,"remote_type":"onsite",
+                "employee_region":region,
+                "remote_type":("onsite" if remote_pct<30 else "hybrid" if remote_pct<80 else "remote"),
                 "years_of_experience":years_exp,"seniority_flag":snr,
                 "is_us":is_us,"geo_multiplier":geo_m,
-                "remote_fraction":0.0,
+                "remote_fraction":remote_pct/100.0,
                 "years_since_2020":yrs_2020,"market_cycle":mkt_cyc,
                 "is_2026":is_2026f,"base_salary_index":base,
                 "company_multiplier":cm_,"edu_multiplier":edu_m,
@@ -403,7 +362,7 @@ with tab1:
             e_  = pd.get_dummies(df_, columns=cat_cols, drop_first=True)
             e_  = e_.reindex(columns=feature_cols, fill_value=0)
             p_  = max(float(np.expm1(model.predict(e_)[0])),15000)
-            marker = "  << YOU" if sz_==company_size else ""
+            marker = " << YOU" if sz_==company_size else ""
             st.markdown(f"`{label_:<25}` ${p_:>9,.0f}{marker}")
 
 with tab2:
@@ -416,22 +375,14 @@ with tab2:
     ml_adj      = prediction-signal
 
     components = [
-        ("Base Salary",     f"${base:,.0f}",
-         f"{job_family} US benchmark"),
-        ("Experience",      f"+${exp_impact:,.0f}",
-         f"{years_exp} years, x{exp_mult:.3f}"),
-        ("Company Size",    f"${comp_impact:+,.0f}",
-         f"{SIZE_LABELS[company_size]} - {company_tier}, x{comp_m:.2f}"),
-        ("Geography",       f"${geo_impact:+,.0f}",
-         f"{COUNTRY_NAMES.get(country,country)}, x{geo_m:.2f}"),
-        ("Education",       f"+${edu_impact:,.0f}",
-         f"{education}, x{edu_m:.2f}"),
-        ("Industry",        f"${ind_impact:+,.0f}",
-         f"{industry}, x{ind_m:.2f}"),
-        ("Economic Signal", f"${signal:,.0f}",
-         "Formula-based estimate"),
-        ("ML Correction",   f"${ml_adj:+,.0f}",
-         "Pattern learned from 49,495 salary records"),
+        ("Base Salary",     f"${base:,.0f}",        f"{job_family} US benchmark"),
+        ("Experience",      f"+${exp_impact:,.0f}",  f"{years_exp} years, x{exp_mult:.3f}"),
+        ("Company Size",    f"${comp_impact:+,.0f}", f"{SIZE_LABELS[company_size]} - {company_tier}, x{comp_m:.2f}"),
+        ("Geography",       f"${geo_impact:+,.0f}",  f"{COUNTRY_NAMES.get(country,country)}, x{geo_m:.2f}"),
+        ("Education",       f"+${edu_impact:,.0f}",  f"{education}, x{edu_m:.2f}"),
+        ("Industry",        f"${ind_impact:+,.0f}",  f"{industry}, x{ind_m:.2f}"),
+        ("Economic Signal", f"${signal:,.0f}",       "Formula-based estimate"),
+        ("ML Correction",   f"${ml_adj:+,.0f}",      "Model pattern adjustment"),
     ]
     for label,value,desc in components:
         a,b,c = st.columns([3,2,4])
@@ -469,8 +420,6 @@ with tab3:
             })
         st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
-    st.markdown("---")
-    st.subheader("Charts")
     for img,title in [
         ("charts/03_diagnostics.png",         "Actual vs Predicted"),
         ("charts/04_band_performance.png",    "Performance by Salary Band"),
@@ -577,9 +526,7 @@ with tab4:
 
         st2 = Table([[
             Paragraph(f"Candidate: {candidate_name}",s_s),
-            Paragraph(
-                f"Generated: {datetime.now().strftime('%d %B %Y, %H:%M')}",
-                s_s),
+            Paragraph(f"Generated: {datetime.now().strftime('%d %B %Y, %H:%M')}",s_s),
         ]],colWidths=[8.5*cm,8.5*cm])
         st2.setStyle(TableStyle([
             ("BACKGROUND",(0,0),(-1,-1),MID),
@@ -592,9 +539,7 @@ with tab4:
         sbt = Table([
             [Paragraph(f"${prediction:,.0f}",ss)],
             [Paragraph(f"Estimated Annual Base Salary | {band}",bns)],
-            [Paragraph(
-                f"Range: ${low:,.0f} - ${high:,.0f} "
-                f"(+/- MAE ${mae:,.0f})",bns)],
+            [Paragraph(f"Range: ${low:,.0f} - ${high:,.0f} (+- MAE ${mae:,.0f})",bns)],
         ],colWidths=[17*cm])
         sbt.setStyle(TableStyle([
             ("BACKGROUND",(0,0),(-1,-1),GREEN),
@@ -624,9 +569,8 @@ with tab4:
             ["Experience",prof["title"],"Years",f"{years_exp} yrs"],
             ["Job Family",job_family,"Education",education],
             ["Company",f"{SIZE_LABELS[company_size]}","Industry",industry],
-            ["Country",COUNTRY_NAMES.get(country,country),
-             "Geo Multiplier",f"x{geo_m:.2f}"],
-            ["Year",str(work_year),"Company Tier",company_tier],
+            ["Country",COUNTRY_NAMES.get(country,country),"City Tier",city_tier],
+            ["Remote",f"{remote_pct}%","Year",str(work_year)],
         ]
         pdt = Table(pd_data,colWidths=[3.2*cm,5.3*cm,3.2*cm,5.3*cm])
         pdt.setStyle(TableStyle([
@@ -648,16 +592,11 @@ with tab4:
         cd = [
             ["Component","Factor","Impact","Description"],
             ["Base (Role)","—",f"${base:,.0f}",f"{job_family} benchmark"],
-            ["Experience",f"x{exp_mult:.3f}",
-             f"+${base*(exp_mult-1):,.0f}",f"{years_exp} years"],
-            ["Company",f"x{comp_m:.2f}",
-             f"${base*exp_mult*(comp_m-1):+,.0f}",company_tier],
-            ["Geography",f"x{geo_m:.2f}",
-             f"${base*exp_mult*comp_m*(geo_m-1):+,.0f}",country],
-            ["Education",f"x{edu_m:.2f}",
-             f"+${base*exp_mult*comp_m*geo_m*(edu_m-1):,.0f}",education],
-            ["Industry",f"x{ind_m:.2f}",
-             f"${base*exp_mult*comp_m*geo_m*edu_m*(ind_m-1):+,.0f}",industry],
+            ["Experience",f"x{exp_mult:.3f}",f"+${base*(exp_mult-1):,.0f}",f"{years_exp} years"],
+            ["Company",f"x{comp_m:.2f}",f"${base*exp_mult*(comp_m-1):+,.0f}",company_tier],
+            ["Geography",f"x{geo_m:.2f}",f"${base*exp_mult*comp_m*(geo_m-1):+,.0f}",country],
+            ["Education",f"x{edu_m:.2f}",f"+${base*exp_mult*comp_m*geo_m*(edu_m-1):,.0f}",education],
+            ["Industry",f"x{ind_m:.2f}",f"${base*exp_mult*comp_m*geo_m*edu_m*(ind_m-1):+,.0f}",industry],
             ["Signal","—",f"${signal:,.0f}","Formula estimate"],
             ["ML Adj","—",f"${ml_a:+,.0f}","Model correction"],
             ["FINAL","—",f"${prediction:,.0f}",band],
@@ -697,12 +636,9 @@ with tab4:
         sec("5. NEGOTIATION GUIDANCE")
         ngt = Table([
             ["Strategy","Target","When to Use"],
-            ["Conservative",f"${prediction*0.90:,.0f}",
-             "First offer, limited leverage"],
-            ["Market Rate",f"${prediction:,.0f}",
-             "Standard negotiation"],
-            ["Stretch",f"${prediction*1.12:,.0f}",
-             "Competing offers, proven impact"],
+            ["Conservative",f"${prediction*0.90:,.0f}","First offer, limited leverage"],
+            ["Market Rate",f"${prediction:,.0f}","Standard negotiation"],
+            ["Stretch",f"${prediction*1.12:,.0f}","Competing offers, proven impact"],
         ],colWidths=[4*cm,4*cm,9*cm])
         ngt.setStyle(TableStyle([
             ("BACKGROUND",(0,0),(-1,0),ACCENT),
@@ -722,31 +658,18 @@ with tab4:
                                 color=colors.HexColor("#BDBDBD")))
         story.append(Spacer(1,0.15*cm))
         story.append(Paragraph(
-            f"DISCLAIMER: CompensIQ ML model trained on 49,495 records. "
+            f"DISCLAIMER: ML model trained on 49,495 records. "
             f"Predictions carry +/-${mae:,.0f} average error. "
-            "Actual salaries vary by negotiation, company, and market. "
-            "GitHub: github.com/Jaswanth-ak/compensiq",
+            "Actual salaries vary by negotiation, company, and market.",
             sms))
 
         doc.build(story)
         buf.seek(0)
 
-        fname = f"compensiq_report_{candidate_name.replace(' ','_').lower()}.pdf"
         st.download_button(
             label="Download PDF",
             data=buf,
-            file_name=fname,
+            file_name=f"salary_report_{candidate_name.replace(' ','_').lower()}.pdf",
             mime="application/pdf"
         )
-        st.success(f"Report ready - click Download PDF above")
-
-st.divider()
-st.markdown(
-    """<div style="text-align:center;color:#888;font-size:0.82rem;">
-    CompensIQ &nbsp;|&nbsp; Built by Jaswanth B &nbsp;|&nbsp;
-    <a href="https://github.com/Jaswanth-ak/compensiq"
-    style="color:#1565C0;">GitHub</a> &nbsp;|&nbsp;
-    HistGradientBoosting &nbsp;|&nbsp; R2 0.8948 &nbsp;|&nbsp; MAE $15,061
-    </div>""",
-    unsafe_allow_html=True
-)
+        st.success("Report ready - click Download PDF above")
