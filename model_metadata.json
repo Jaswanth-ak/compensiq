@@ -2,12 +2,12 @@
   "best_model": "HistGradientBoosting",
   "use_scaled": false,
   "use_log_target": true,
-  "r2": 0.8948,
-  "cv_r2": 0.9322,
-  "cv_std": 0.0028,
-  "mae": 15060.56,
-  "rmse": 22475.46,
-  "mape": 12.16,
+  "r2": 0.8929,
+  "cv_r2": 0.9316,
+  "cv_std": 0.0027,
+  "mae": 15216.92,
+  "rmse": 22684.61,
+  "mape": 12.3,
   "n_features": 64,
   "n_train": 31538,
   "n_test": 7885,
@@ -51,34 +51,74 @@
   "target": "salary_in_usd",
   "all_models": {
     "Random Forest": {
-      "r2": 0.8909,
-      "mae": 15343.91,
-      "mape": 12.34
+      "r2": 0.8876,
+      "mae": 15618.44,
+      "mape": 12.55
     },
     "Gradient Boosting": {
-      "r2": 0.8932,
-      "mae": 15185.81,
-      "mape": 12.24
+      "r2": 0.8921,
+      "mae": 15298.97,
+      "mape": 12.36
     },
     "HistGradientBoosting": {
-      "r2": 0.8948,
-      "mae": 15060.56,
-      "mape": 12.16
+      "r2": 0.8929,
+      "mae": 15216.92,
+      "mape": 12.3
     },
     "XGBoost": {
-      "r2": 0.8895,
-      "mae": 15524.44,
-      "mape": 12.5
+      "r2": 0.8876,
+      "mae": 15607.57,
+      "mape": 12.59
     }
   },
   "base_salary_index": {
-    "ML Engineer": 128000,
-    "Data Scientist": 118000,
-    "Manager": 140000,
-    "Architect": 135000,
-    "Data Engineer": 115000,
-    "Analyst": 88000,
-    "Other": 100000
+    "Business Intelligence Engineer": 97290,
+    "BI Analyst": 96803,
+    "Analytics Analyst": 98150,
+    "Product Analyst": 98066,
+    "Reporting Analyst": 100853,
+    "Data Analyst": 94054,
+    "Business Analyst": 98067,
+    "ML Architect": 146828,
+    "Enterprise Architect": 146196,
+    "Solution Architect": 150416,
+    "Data Architect": 144830,
+    "Cloud Architect": 144586,
+    "Data Platform Engineer": 127872,
+    "Analytics Engineer": 128539,
+    "Data Engineer": 131379,
+    "Software Engineer": 128373,
+    "Backend Engineer": 128418,
+    "Senior Data Engineer": 128486,
+    "Cloud Data Engineer": 127474,
+    "ETL Engineer": 127291,
+    "Data Scientist": 135572,
+    "Applied Scientist": 137006,
+    "Data Science Lead": 130138,
+    "Senior Data Scientist": 134070,
+    "Research Scientist": 144150,
+    "Quantitative Researcher": 162888,
+    "MLOps Engineer": 146748,
+    "Deep Learning Engineer": 146953,
+    "Senior ML Engineer": 149422,
+    "AI Engineer": 149496,
+    "ML Engineer": 148298,
+    "Machine Learning Engineer": 150466,
+    "Applied ML Engineer": 150444,
+    "NLP Engineer": 147238,
+    "Analytics Manager": 158985,
+    "VP of Analytics": 150167,
+    "Data Science Manager": 159623,
+    "Director of Data Science": 157182,
+    "Head of Data": 159942,
+    "Chief Data Officer": 160885,
+    "Engineering Manager": 167991,
+    "Data Manager": 164516,
+    "Data Consultant": 109546,
+    "Data Specialist": 101486,
+    "AI Consultant": 113714,
+    "Data Product Manager": 114326,
+    "Research Analyst": 107849
   },
   "tier_multiplier": {
     "Startup": 0.82,
@@ -93,11 +133,11 @@
     "MBA": 1.1
   },
   "industry_multiplier": {
+    "Finance": 1.155,
+    "Research": 1.143,
     "Tech": 1.0,
-    "Finance": 1.22,
-    "Research": 1.05,
-    "Consulting": 1.08,
-    "Other_Industry": 0.9
+    "Consulting": 0.979,
+    "Retail": 0.665
   },
   "country_geo": {
     "US": 1.0,

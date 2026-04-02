@@ -65,7 +65,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.divider()
-or
+
 REGION_MAP = {
     "US":"North America","CA":"North America","GB":"Europe_West",
     "DE":"Europe_West","FR":"Europe_West","NL":"Europe_West",
