@@ -1,20 +1,25 @@
-# Large files
-employees_enhanced.csv
-
-
+# Data files
+*.csv
+*.xlsx
+ 
+# Model artifacts
+*.pkl
+*.joblib
+*.h5
+ 
+# Generated files
+*.png
+*.pdf
+artifacts/
+charts/
+ 
+# Metadata
+model_metadata.json
+ 
 # Python
+venv/
 __pycache__/
 *.pyc
-*.pyo
-venv/
-.venv/
-
-# Jupyter
+.env
+*.egg-info/
 .ipynb_checkpoints/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Sample reports
-report_*.pdf
